@@ -31,3 +31,5 @@ errors
 
 CE <- (t(coefficients) %*% variables) + t(errors)
 CE
+
+#Initially, project selection is random
