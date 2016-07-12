@@ -1,4 +1,4 @@
-# We start off by running some variables 
+# We start off by defining parameter values for the run.
 
 #Define parameter values
 # Number of projects =n 
@@ -18,19 +18,16 @@ mue <- 1
 # Error SD
 sigmae <- 2
 
-#
-> coefficients <- rlnorm(k, meanlog=muc, sdlog=sigmac)
-> coefficients
+# Now we can generate the coefficients, variables, and error terms, and use them to determine cost-effectiveness values.
+set.seed(123)
+coefficients <- rlnorm(k, meanlog=muc, sdlog=sigmac)
+coefficients
 
-> set.seed(123)
-> coefficients <- rlnorm(k, meanlog=muc, sdlog=sigmac)
-> coefficients
+variables <- matrix(rlnorm(n*k, meanlog=muv, sdlog=sigmav), nrow=k, ncol=n, byrow=TRUE)
+variables
 
-> variables <- matrix(rlnorm(n*k, meanlog=muv, sdlog=sigmav), nrow=k, ncol=n, byrow=TRUE)
-> variables
+errors <- rlnorm(n, meanlog=mue, sdlog=sigmae)
+errors
 
-> errors <- rlnorm(n, meanlog=mue, sdlog=sigmae)
-> errors
-
-> CE <- (t(coefficients) %*% variables) + t(errors)
-> CE
+CE <- (t(coefficients) %*% variables) + t(errors)
+CE
