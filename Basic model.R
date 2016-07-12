@@ -18,18 +18,20 @@ mue <- 1
 # Error SD
 sigmae <- 2
 
-# Now we can generate the coefficients, variables, and error terms, and use them to determine cost-effectiveness values.
+# Now we can generate the coefficients, variables, and error terms, 
+# and use them to determine cost-effectiveness values.
 set.seed(123)
 coefficients <- rlnorm(k, meanlog=muc, sdlog=sigmac)
-coefficients
 
 variables <- matrix(rlnorm(n*k, meanlog=muv, sdlog=sigmav), nrow=k, ncol=n, byrow=TRUE)
-variables
 
 errors <- rlnorm(n, meanlog=mue, sdlog=sigmae)
-errors
 
-CE <- (t(coefficients) %*% variables) + t(errors)
-CE
+costeffectiveness <- (t(coefficients) %*% variables) + t(errors)
 
-#Initially, project selection is random
+#Initially, project selection is random, which since project generation is random,
+#can be represented as taking the first k projects.
+projectchoice <- costeffectiveness[1:k]
+projectchoice
+
+# Now individuals can predict the optimal choice with a linear regression model, and add it
