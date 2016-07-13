@@ -28,6 +28,12 @@ variables <- matrix(rlnorm(n*k, meanlog=muv, sdlog=sigmav), nrow=k, ncol=n, byro
 errors <- rlnorm(n, meanlog=mue, sdlog=sigmae)
 
 costeffectiveness <- (t(coefficients) %*% variables) + t(errors)
+t(costeffectiveness)
+
+# Now we need to pass this into a data frame
+regdata <- as.data.frame(t(variables))
+regdata <- cbind.data.frame(t(costeffectiveness), regdata)
+colnames(regdata) <- c("ce", "v1", "v2", "v3", "v4", "v5")
 
 #Initially, project selection is random, which since project generation is random,
 #can be represented as taking the first k projects.
@@ -35,3 +41,5 @@ projectchoice <- costeffectiveness[1:k]
 projectchoice
 
 # Now individuals can predict the optimal choice with a linear regression model, and add it
+lm <- lm(ce~ ., data=regdata)
+lm
