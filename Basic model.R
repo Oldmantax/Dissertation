@@ -1,14 +1,14 @@
 # We start off by defining parameter values for the run.
 
 #Define parameter values
-# Number of projects =n 
-n <- 1000
+# Number of projects =n
+n <- 30
 #Number of relevant factors =k
-k <- 10
+k <- 6
 # Coefficient mean
 muc <- 1
 # Coefficient SD
-sigmac <- 2
+sigmac <- 1
 # Variable mean
 muv <- 3
 #Variable SD
@@ -16,7 +16,7 @@ sigmav <- 2
 # Error mean
 mue <- 2
 # Error SD
-sigmae <- 4
+sigmae <- 2
 
 # Now we can generate the coefficients, variables, and error terms, 
 # and use them to determine cost-effectiveness values.
@@ -33,7 +33,13 @@ t(costeffectiveness)
 # Now we need to pass this into a data frame
 df <- as.data.frame(t(variables))
 df <- cbind.data.frame(rep(0, k), t(costeffectiveness), df)
-colnames(df) <- c("lmpred", "ce", "v1", "v2", "v3", "v4", "v5")
+
+names <- c("lmpred", "ce")
+for (i in 1:k) {
+  names <-c(names, paste0("v",i))
+}
+
+colnames(df) <- names
 df
 
 #Initially, project selection is random, which since project generation is random,
@@ -55,8 +61,5 @@ selprojects <- rbind(selprojects, rejprojects[1,])
 rejprojects <- rejprojects[-1,]
 }
 selprojects
-rownames(selprojects) <- 1:nrow(selprojects)
-selprojects <-cbind(selprojects, cumsum(selprojects$ce), 1:nrow(selprojects))
 attach(selprojects)
-plot(1:nrow(selprojects), `cumsum(selprojects$ce)`)
-selprojects
+plot(1:nrow(selprojects), cumsum(selprojects$ce), xlab="Number of projects", ylab="Cumulative Progress")
