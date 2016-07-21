@@ -1,3 +1,4 @@
+# Now we just implement the basic model as a function, to make things easier. 
 learningtoresearch <- function(n, k, muc, sigmac, mue, sigmae, muv, sigmav) {
   coefficients <- rlnorm(k, meanlog=muc, sdlog=sigmac)
   
