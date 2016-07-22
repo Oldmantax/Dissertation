@@ -38,6 +38,7 @@ learningtoresearch <- function(n, k, muc, sigmac, mue, sigmae, muv, sigmav) {
     selprojects <- rbind(selprojects, rejprojects[1,])
     rejprojects <- rejprojects[-1,]
   }
+  
   return(selprojects)
   
 }

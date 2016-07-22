@@ -43,6 +43,5 @@ multiplyingltr <- function(n, k, muc, sigmac, mue, sigmae, muv, sigmav) {
   return(selprojects)
 }
 MCE <- multiplyingltr(50, 3, 2, 1, 2, 1, 2, 1)
-plot(1:nrow(MCE), cumprod(MCE$ce))
-
+plot(1:nrow(MCE), cumprod(MCE$ce), log="y", xlab="Number of projects", ylab="Logarithm of Cumulative Progress")
 
