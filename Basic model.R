@@ -2,7 +2,7 @@
 
 #Define parameter values
 # Number of projects =n
-n <- 30
+n <- 47
 #Number of relevant factors =k
 k <- 6
 # Coefficient mean
@@ -32,7 +32,7 @@ t(costeffectiveness)
 
 # Now we need to pass this into a data frame
 df <- as.data.frame(t(variables))
-df <- cbind.data.frame(rep(0, k), t(costeffectiveness), df)
+df <- cbind.data.frame(rep(0, n), t(costeffectiveness), df)
 
 names <- c("lmpred", "ce")
 for (i in 1:k) {

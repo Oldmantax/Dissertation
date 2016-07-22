@@ -11,5 +11,5 @@ while (i>0){
 return(CE[, -1])
 }
 # Now we can output a graph with average cost effectiveness.
-TCE <- iteratedltr(100, 40, 10, 2, 1, 2, 1, 2, 1)
+TCE <- iteratedltr(100, 60, 5, 2, 1, 2, 1, 2, 1)
 plot(1:nrow(TCE),cumsum(rowMeans(TCE)), xlab="Number of projects", ylab="Cumulative Average Progress")

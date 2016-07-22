@@ -10,7 +10,7 @@ learningtoresearch <- function(n, k, muc, sigmac, mue, sigmae, muv, sigmav) {
   
   # Now we need to pass this into a data frame
   df <- as.data.frame(t(variables))
-  df <- cbind.data.frame(rep(0, k), t(costeffectiveness), df)
+  df <- cbind.data.frame(rep(0, n), t(costeffectiveness), df)
   
   names <- c("lmpred", "ce")
   for (i in 1:k) {
