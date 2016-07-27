@@ -21,11 +21,11 @@ sigmae <- 2
 # Now we can generate the coefficients, variables, and error terms, 
 # and use them to determine cost-effectiveness values.
 set.seed(123)
-coefficients <- rlnorm(k, meanlog=muc, sdlog=sigmac)
+coefficients <- rlnorm(k, meanlog=log((muc^2)/(sqrt(sigmac + (muc^2)))), sdlog=sqrt(log(1 +(sigmac/(muc^2)))))
 
-variables <- matrix(rlnorm(n*k, meanlog=muv, sdlog=sigmav), nrow=k, ncol=n, byrow=TRUE)
+variables <- matrix(rlnorm(n*k, meanlog=log((muv^2)/(sqrt((sigmav + (muv^2))))), sdlog=sqrt(log(1 +(sigmav/(muv^2))))), nrow=k, ncol=n, byrow=TRUE)
 
-errors <- rlnorm(n, meanlog=mue, sdlog=sigmae)
+errors <- rlnorm(n, meanlog=log((mue^2)/(sqrt((sigmae + (mue^2))))), sdlog=sqrt(log(1 +(sigmae/(mue^2)))))
 
 costeffectiveness <- (t(coefficients) %*% variables) + t(errors)
 t(costeffectiveness)

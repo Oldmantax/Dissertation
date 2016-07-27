@@ -1,10 +1,10 @@
 # Now we just implement the basic model as a function, to make things easier. 
 learningtoresearch <- function(n, k, muc, sigmac, mue, sigmae, muv, sigmav) {
-  coefficients <- rlnorm(k, meanlog=muc, sdlog=sigmac)
+  coefficients <- rlnorm(k, meanlog=log((muc^2)/(sqrt(sigmac + (muc^2)))), sdlog=sqrt(log(1 +(sigmac/(muc^2)))))
   
-  variables <- matrix(rlnorm(n*k, meanlog=muv, sdlog=sigmav), nrow=k, ncol=n, byrow=TRUE)
+  variables <- matrix(rlnorm(n*k, meanlog=log((muv^2)/(sqrt((sigmav + (muv^2))))), sdlog=sqrt(log(1 +(sigmav/(muv^2))))), nrow=k, ncol=n, byrow=TRUE)
   
-  errors <- rlnorm(n, meanlog=mue, sdlog=sigmae)
+  errors <- rlnorm(n, meanlog=log((mue^2)/(sqrt((sigmae + (mue^2))))), sdlog=sqrt(log(1 +(sigmae/(mue^2)))))
   
   costeffectiveness <- (t(coefficients) %*% variables) + t(errors)
   
