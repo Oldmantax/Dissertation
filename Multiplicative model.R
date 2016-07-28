@@ -1,10 +1,10 @@
 # Now we just implement the multiplicative model as a functionplo, to make things easier. 
-multiplyingltr <- function(n, k, muc, sigmac, mue, sigmae, muv, sigmav) {
-  coefficients <- rlnorm(k, meanlog=log((muc^2)/(sqrt(sigmac + (muc^2)))), sdlog=sqrt(log(1 +(sigmac/(muc^2)))))
+multiplyingltr <- function(n, k, muB, sigma2B, muX, sigma2X, muu, sigma2u) {
+  coefficients <- rlnorm(k, meanlog=log((muB^2)/(sqrt(sigma2B + (muB^2)))), sdlog=sqrt(log(1 +(sigma2B/(muB^2)))))
   
-  variables <- matrix(rlnorm(n*k, meanlog=log((muv^2)/(sqrt((sigmav + (muv^2))))), sdlog=sqrt(log(1 +(sigmav/(muv^2))))), nrow=k, ncol=n, byrow=TRUE)
+  variables <- matrix(rlnorm(n*k, meanlog=log((muX^2)/(sqrt((sigma2X + (muX^2))))), sdlog=sqrt(log(1 +(sigma2X/(muX^2))))), nrow=k, ncol=n, byrow=TRUE)
   
-  errors <- rlnorm(n, meanlog=log((mue^2)/(sqrt((sigmae + (mue^2))))), sdlog=sqrt(log(1 +(sigmae/(mue^2)))))
+  errors <- rlnorm(n, meanlog=log((muu^2)/(sqrt((sigma2u + (muu^2))))), sdlog=sqrt(log(1 +(sigma2u/(muu^2)))))
   
   costeffectiveness <- (t(coefficients) %*% variables) + t(errors)
   
