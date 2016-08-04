@@ -11,5 +11,5 @@ iteratedmltr <- function(r, n, k, muB, sigma2B, muX, sigma2X, muu, sigma2u) {
   return(CE[, -1])
 }
 # Now we can output a graph with average cost effectiveness.
-TCE <- iteratedltr(100, 60, 5, 2, 1, 2, 1, 2, 1)
+TCE <- iteratedmltr(10, 60, 5, 2, 1, 2, 1, 2, 1)
 plot(1:nrow(TCE), cumprod(rowMeans(TCE)), log="y", xlab="Number of projects", ylab="Logarithm of Cumulative Average Progress")

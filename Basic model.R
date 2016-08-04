@@ -2,21 +2,21 @@
 
 #Define parameter values
 # Number of projects =n
-n <- 47
+n <- 10
 #Number of relevant factors =k
-k <- 6
+k <- 2
 # Coefficient mean
 muB <- 1
 # Coefficient SD
-sigma2B <- 1
+sigma2B <- 10
 # Variable mean
-muX <- 3
+muX <- 1
 #Variable SD
-sigma2X <- 2
+sigma2X <- 10
 # Error mean
-muu <- 2
+muu <- 1
 # Error SD
-sigma2u <- 2
+sigma2u <- 10
 
 # Now we can generate the coefficients, variables, and error terms, 
 # and use them to determine cost-effectiveness values.
